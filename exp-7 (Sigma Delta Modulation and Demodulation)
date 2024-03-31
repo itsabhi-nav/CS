@@ -31,14 +31,10 @@ subplot(311), plot(abs(fftshift(fft(y(t)))) / length(t)), xlabel('Frequency'), y
 subplot(312), plot(abs(fftshift(fft(q))) / length(ts)), xlabel('Frequency'), ylabel('Amplitude'), title('Spectrum of SDQ')
 subplot(313), plot(abs(fftshift(fft(z))) / length(t)), title('Spectrum of recovered signal'), xlabel('Frequency'), ylabel('Amplitude')
 
-error = immse(z, y(t));
 
-function [u, q] = SDQ(y, t)
-    q = zeros(1, length(t));
-    u = zeros(1, length(t));
-    u(1) = 0.9;
-    for k = 2:length(t)
-        q(k) = sign(y(k));
-        u(k) = u(k - 1) + y(k) - q(k);
-    end
+
+function [u, q] = SDQ(y,~)
+    q = sign(y);
+    u = cumsum(y - q) + 0.9;
+end
 end
