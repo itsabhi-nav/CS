@@ -1,8 +1,6 @@
-clc;
-clear all;
-close all;
 
-% Signal Generation
+
+
 a = 2;
 t = 0:2*pi/50:2*pi;
 x = a*sin(t);
@@ -16,10 +14,10 @@ xn = zeros(1, l + 1);
 
 for i = 1:l
     if x(i) > xn(i)
-        d(i) = 1;
+  
         xn(i+1) = xn(i) + delta;
     else
-        d(i) = 0;
+
         xn(i+1) = xn(i) - delta;
     end
 end
